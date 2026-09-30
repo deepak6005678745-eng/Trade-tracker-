@@ -1,206 +1,123 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080b14">
-  <title>Kewa Trade Tracker</title>
-  <link rel="stylesheet" href="./style.css">
+  <meta name="theme-color" content="#07112e">
+  <title>KEWA Trade Tracker</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app">
+  <div class="app-shell">
     <aside class="sidebar" id="sidebar">
       <div class="brand">
-        <div class="brand-logo">K</div>
-        <div><strong>KEWA</strong><small>TRADE TRACKER</small></div>
+        <div class="brand-mark">K<span>Ξ</span></div>
+        <div><div class="brand-name">KEWA</div><div class="brand-sub">TRADE TRACKER</div></div>
       </div>
-
-      <div class="side-label">WORKSPACE</div>
-      <nav>
-        <button class="nav-btn active" data-page="dashboard">▦ <span>Dashboard</span></button>
-        <button class="nav-btn" data-page="trades">▤ <span>Trade Journal</span></button>
-        <button class="nav-btn" data-page="addTrade">＋ <span>Add Trade</span></button>
-        <button class="nav-btn" data-page="backup">⇅ <span>Backup & Reports</span></button>
+      <div class="tagline">Trade <b>◆</b> Track <b>◆</b> Grow</div>
+      <nav class="nav">
+        <button class="nav-item active" data-view="home"><span>⌂</span>Home</button>
+        <button class="nav-item" data-view="trades"><span>▤</span>Trades</button>
+        <button class="nav-item" data-view="journal"><span>⌁</span>Trade Journal</button>
+        <button class="nav-item" data-view="backup"><span>☁</span>Backup & Recovery</button>
       </nav>
-
-      <div class="sidebar-bottom">
-        <span class="live-dot"></span> Offline storage enabled
-        <small>Your data stays in this browser</small>
-      </div>
+      <div class="storage-status"><span class="status-dot"></span><div><b>Local Storage</b><small>Your device, your data</small></div></div>
+      <div class="sidebar-art" aria-hidden="true"><div class="orb">◆</div><div class="art-line"></div><small>DISCIPLINE • PATIENCE • PROFIT</small></div>
+      <div class="side-foot">KEWA <span>v2.0</span></div>
     </aside>
 
     <main class="main">
       <header class="topbar">
-        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
-        <div>
-          <div class="eyebrow">PERSONAL TRADING JOURNAL</div>
-          <h1 id="pageHeading">Dashboard</h1>
+        <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
+        <div class="welcome-avatar">K</div>
+        <div class="welcome"><h1>Welcome, <span id="userNameHeading">Trader</span> <span class="crown">♛</span></h1><p>Great trades build great stories <span class="purple">♥</span></p></div>
+        <div class="top-actions">
+          <button class="icon-button" id="themeToggle" title="Toggle theme">☾</button>
+          <button class="profile-button" id="nameButton"><span class="mini-avatar">K</span><span id="profileName">Trader</span>⌄</button>
         </div>
-        <button class="primary-btn top-add" id="topAddBtn">＋ Add Trade</button>
       </header>
 
-      <section class="page active" id="dashboardPage">
-        <div class="welcome">
-          <div>
-            <span class="eyebrow">YOUR TRADING OVERVIEW</span>
-            <h2>Trade smarter. <span>Track better.</span></h2>
-            <p>Review your trading activity, risk and targets.</p>
-          </div>
-          <div class="welcome-mark">K<span>↗</span></div>
-        </div>
-
+      <section id="homeView" class="view active">
         <div class="stats-grid">
-          <article class="stat-card">
-            <div class="stat-top"><span>Total Trades</span><span class="stat-icon purple">▤</span></div>
-            <strong id="totalTrades">0</strong>
-            <small>All recorded trades</small>
-          </article>
-          <article class="stat-card">
-            <div class="stat-top"><span>Total Profit</span><span class="stat-icon green">↗</span></div>
-            <strong id="totalProfit" class="positive">₹0.00</strong>
-            <small>Profitable closed trades</small>
-          </article>
-          <article class="stat-card">
-            <div class="stat-top"><span>Total Loss</span><span class="stat-icon red">↘</span></div>
-            <strong id="totalLoss" class="negative">₹0.00</strong>
-            <small>Losses shown as magnitude</small>
-          </article>
-          <article class="stat-card">
-            <div class="stat-top"><span>Net P&L</span><span class="stat-icon blue">◈</span></div>
-            <strong id="netPnl">₹0.00</strong>
-            <small>After recorded fees</small>
-          </article>
-          <article class="stat-card">
-            <div class="stat-top"><span>Win Rate</span><span class="stat-icon gold">％</span></div>
-            <strong id="winRate">0%</strong>
-            <small id="winCaption">0 closed trades</small>
-          </article>
+          <article class="stat-card blue"><div class="stat-top"><span>Total Trades</span><i>↔</i></div><strong id="totalTrades">0</strong><small id="tradeCountNote">All recorded trades</small><div class="spark">⌁⌁⌁</div></article>
+          <article class="stat-card green"><div class="stat-top"><span>Total Profit</span><i>＄</i></div><strong id="totalProfit">₹0.00</strong><small>Profitable closed trades</small><div class="spark">⌁⌁⌁</div></article>
+          <article class="stat-card red"><div class="stat-top"><span>Total Loss</span><i>↓</i></div><strong id="totalLoss">₹0.00</strong><small>Losses shown as absolute value</small><div class="spark">⌁⌁⌁</div></article>
+          <article class="stat-card violet"><div class="stat-top"><span>Win Rate</span><i>◎</i></div><strong id="winRate">0%</strong><small>Wins ÷ closed trades</small><div class="spark">⌁⌁⌁</div></article>
+          <article class="stat-card pink"><div class="stat-top"><span>Brokerage</span><i>▤</i></div><strong id="totalBrokerage">₹0.00</strong><small>Total recorded brokerage</small><div class="spark">⌁⌁⌁</div></article>
+          <button class="add-trade-hero" id="addTradeHero"><span>＋</span> Add Trade</button>
         </div>
 
-        <div class="section-heading">
-          <div><h3>Profit & Loss Overview</h3><p>Green and red candles reflect recorded results.</p></div>
-        </div>
-
-        <div class="panel candle-panel">
-          <div class="candle-legend">
-            <span><i class="legend-dot green-bg"></i> Profit</span>
-            <span><i class="legend-dot red-bg"></i> Loss</span>
-          </div>
-          <div class="candle-stage">
-            <div class="candle-column">
-              <div class="candle-value positive" id="profitCandleValue">₹0.00</div>
-              <div class="candle-track"><div class="candle-body profit-candle" id="profitCandle"></div></div>
-              <strong>PROFIT</strong>
-            </div>
-            <div class="candle-column">
-              <div class="candle-value negative" id="lossCandleValue">₹0.00</div>
-              <div class="candle-track"><div class="candle-body loss-candle" id="lossCandle"></div></div>
-              <strong>LOSS</strong>
-            </div>
-          </div>
-          <p class="chart-note">Closed trades only. Values are grouped by currency; unlike currencies are not added together.</p>
-        </div>
-
-        <div class="section-heading">
-          <div><h3>Risk & Reward</h3><p>Planned values from your manually entered SL and TP.</p></div>
-        </div>
-        <div class="stats-grid risk-grid">
-          <article class="stat-card"><span class="muted">Planned Risk</span><strong id="plannedRisk">₹0.00</strong><small>Based on quantity and entry/SL</small></article>
-          <article class="stat-card"><span class="muted">Planned Reward</span><strong id="plannedReward">₹0.00</strong><small>Based on quantity and entry/TP</small></article>
-          <article class="stat-card"><span class="muted">Average R:R</span><strong id="averageRR">—</strong><small>Trades with valid SL and TP</small></article>
-        </div>
-
-        <div class="section-heading">
-          <div><h3>Recent Trades</h3><p>Your latest journal entries.</p></div>
-          <button class="text-btn" data-goto="trades">View all →</button>
-        </div>
-        <div class="panel table-panel">
-          <div class="table-scroll">
-            <table>
-              <thead><tr><th>TRADE</th><th>MARKET</th><th>DATE</th><th>STATUS</th><th>P&L</th></tr></thead>
-              <tbody id="recentTrades"></tbody>
-            </table>
-          </div>
-          <div class="empty-state" id="recentEmpty">No trades yet. Add your first trade to get started.</div>
+        <div class="dashboard-grid">
+          <article class="panel profit-panel">
+            <div class="panel-head"><div><h2>▥ &nbsp; Profit vs Loss</h2><p>Closed trades comparison</p></div><select id="chartRange" aria-label="Chart range"><option value="30">Last 30 Days</option><option value="7">Last 7 Days</option><option value="90">Last 90 Days</option><option value="all">All Time</option></select></div>
+            <div class="bar-chart" id="profitLossChart"><div class="chart-empty">Add closed trades to see your P&amp;L chart.</div></div>
+            <div class="chart-legend"><span class="legend-green">● Total Profit <b id="chartProfit">₹0.00</b></span><span class="legend-red">● Total Loss <b id="chartLoss">₹0.00</b></span></div>
+          </article>
+          <article class="panel market-panel">
+            <div class="panel-head"><div><h2>◕ &nbsp; Market Distribution</h2><p>Trades by market</p></div></div>
+            <div class="market-content"><div class="donut" id="marketDonut"><div><strong id="donutTotal">0</strong><small>Total Trades</small></div></div><div class="market-legend" id="marketLegend"></div></div>
+          </article>
+          <article class="panel performance-panel">
+            <div class="panel-head"><div><h2>⌁ &nbsp; Performance Chart</h2><p>Cumulative P&amp;L over time</p></div><select id="performanceRange" aria-label="Performance range"><option value="30">Last 30 Days</option><option value="7">Last 7 Days</option><option value="90">Last 90 Days</option><option value="all">All Time</option></select></div>
+            <div class="line-chart" id="performanceChart"><div class="chart-empty">Closed trades will appear here.</div></div>
+          </article>
+          <article class="panel recent-panel">
+            <div class="panel-head"><div><h2>☷ &nbsp; Recent Trades</h2><p>Latest entries in your journal</p></div><button class="small-button" data-go="trades">View All →</button></div>
+            <div class="table-wrap"><table><thead><tr><th>Symbol</th><th>Market</th><th>Side</th><th>P&amp;L</th><th>Status</th></tr></thead><tbody id="recentTradesBody"></tbody></table></div>
+            <div id="recentEmpty" class="empty-state">No trades yet. Use “Add Trade” to record your first trade.</div>
+          </article>
         </div>
       </section>
 
-      <section class="page" id="tradesPage">
-        <div class="page-intro"><h2>Trade Journal</h2><p>Review, search, edit or delete your trades.</p></div>
-        <div class="filters">
-          <input id="searchTrades" type="search" placeholder="Search symbol...">
-          <select id="filterMarket"><option value="">All markets</option><option>Stocks</option><option>Crypto</option><option>Forex</option></select>
-          <select id="filterResult"><option value="">All statuses</option><option>Open</option><option>Closed</option></select>
-        </div>
-        <div class="panel table-panel">
-          <div class="table-scroll">
-            <table>
-              <thead><tr><th>TRADE</th><th>MARKET</th><th>DIRECTION</th><th>ENTRY / EXIT</th><th>SL / TP</th><th>R:R</th><th>STATUS</th><th>P&L</th><th>ACTIONS</th></tr></thead>
-              <tbody id="allTrades"></tbody>
-            </table>
-          </div>
-          <div class="empty-state" id="tradesEmpty">No trades match your filters.</div>
-        </div>
+      <section id="tradesView" class="view">
+        <div class="page-heading"><div><h2>Trade History</h2><p>Manage every entry in your trading journal.</p></div><button class="primary-button" id="addTradeButton">＋ Add Trade</button></div>
+        <div class="filters"><input id="tradeSearch" placeholder="Search symbol or notes…"><select id="marketFilter"><option value="all">All Markets</option><option>Stocks</option><option>Crypto</option><option>Forex</option></select><select id="statusFilter"><option value="all">All Statuses</option><option>Closed</option><option>Open</option></select></div>
+        <div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>Symbol</th><th>Market</th><th>Side</th><th>Entry</th><th>Exit</th><th>Size</th><th>Brokerage</th><th>P&amp;L</th><th>Status</th><th>Actions</th></tr></thead><tbody id="tradesBody"></tbody></table></div><div id="tradesEmpty" class="empty-state">No matching trades found.</div></div>
       </section>
 
-      <section class="page" id="addTradePage">
-        <div class="page-intro"><h2 id="formTitle">Add New Trade</h2><p>Enter your trade details manually. SL and TP are optional.</p></div>
-        <form id="tradeForm" class="panel form-panel">
-          <input type="hidden" id="tradeId">
-          <div class="form-section-title">01 — TRADE DETAILS</div>
-          <div class="form-grid">
-            <label>Symbol<input id="symbol" required maxlength="30" placeholder="e.g. RELIANCE, BTCUSDT"></label>
-            <label>Market<select id="market" required><option>Stocks</option><option>Crypto</option><option>Forex</option></select></label>
-            <label>Direction<select id="direction" required><option>Long</option><option>Short</option></select></label>
-            <label>Status<select id="status" required><option>Open</option><option>Closed</option></select></label>
-            <label>Trade Date<input id="tradeDate" type="date" required></label>
-            <label>Currency<select id="currency"><option>INR</option><option>USD</option><option>EUR</option><option>GBP</option></select></label>
-          </div>
-
-          <div class="form-section-title">02 — PRICE & POSITION</div>
-          <div class="form-grid">
-            <label>Entry Price<input id="entryPrice" type="number" min="0" step="any" required placeholder="0.00"></label>
-            <label>Exit Price <span class="muted">(required if closed)</span><input id="exitPrice" type="number" min="0" step="any" placeholder="Leave blank if open"></label>
-            <label>Quantity<input id="quantity" type="number" min="0.00000001" step="any" required placeholder="e.g. 10"></label>
-            <label>Fees / Brokerage<input id="fees" type="number" min="0" step="any" value="0" placeholder="0.00"></label>
-          </div>
-
-          <div class="form-section-title">03 — RISK MANAGEMENT</div>
-          <div class="form-grid">
-            <label class="sl-field">Stop Loss (SL)<input id="stopLoss" type="number" min="0" step="any" placeholder="Optional price"></label>
-            <label class="tp-field">Take Profit (TP)<input id="takeProfit" type="number" min="0" step="any" placeholder="Optional target price"></label>
-          </div>
-
-          <div class="risk-preview">
-            <div><small>PLANNED RISK</small><strong id="previewRisk">—</strong></div>
-            <div><small>PLANNED REWARD</small><strong id="previewReward">—</strong></div>
-            <div><small>RISK : REWARD</small><strong id="previewRR">—</strong></div>
-          </div>
-          <p class="hint">Long: SL below entry and TP above entry. Short: SL above entry and TP below entry. Estimates exclude fees and slippage.</p>
-
-          <label>Notes<textarea id="notes" rows="3" maxlength="1000" placeholder="Trade setup, strategy, observations..."></textarea></label>
-          <div class="form-actions">
-            <button type="button" class="secondary-btn" id="cancelBtn">Cancel</button>
-            <button type="submit" class="primary-btn" id="saveTradeBtn">Save Trade</button>
-          </div>
-        </form>
+      <section id="journalView" class="view">
+        <div class="page-heading"><div><h2>Trade Journal</h2><p>Review your notes, setup and lessons learned.</p></div><button class="primary-button" id="journalAddButton">＋ Add Journal Entry</button></div>
+        <div id="journalList" class="journal-grid"></div>
+        <div id="journalEmpty" class="empty-state panel">Your journal is empty. Add a trade with notes to build your journal.</div>
       </section>
 
-      <section class="page" id="backupPage">
-        <div class="page-intro"><h2>Backup & Reports</h2><p>Protect your journal data and create a printable report.</p></div>
+      <section id="backupView" class="view">
+        <div class="page-heading"><div><h2>Backup & Recovery</h2><p>Keep a copy of your data and restore it when needed.</p></div></div>
         <div class="backup-grid">
-          <article class="panel backup-card"><div class="backup-icon">⇩</div><h3>Export Backup</h3><p>Save all trades to a JSON file so you can restore them later.</p><button class="primary-btn full-btn" id="exportBtn">Export JSON Backup</button></article>
-          <article class="panel backup-card"><div class="backup-icon">⇧</div><h3>Import Backup</h3><p>Restore trades from a previously exported JSON file. Existing trades will be replaced.</p><input id="importFile" type="file" accept=".json,application/json" hidden><button class="secondary-btn full-btn" id="importBtn">Choose JSON File</button></article>
-          <article class="panel backup-card"><div class="backup-icon">▤</div><h3>Print / PDF Report</h3><p>Open your browser's print dialog and choose Save as PDF.</p><button class="secondary-btn full-btn" id="printBtn">Print / Save PDF</button></article>
+          <article class="panel backup-card"><div class="backup-icon">⇩</div><h3>Export JSON Backup</h3><p>Download all trades and settings in a JSON file. Keep it somewhere safe.</p><button class="primary-button" id="exportJson">Download JSON Backup</button></article>
+          <article class="panel backup-card"><div class="backup-icon">⇧</div><h3>Import Backup</h3><p>Restore a previous KEWA JSON backup. You can merge it with current trades or replace current data.</p><input type="file" id="importFile" accept=".json,application/json" hidden><button class="primary-button" id="chooseImport">Choose Backup File</button><div class="inline-options"><label><input type="radio" name="importMode" value="merge" checked> Merge</label><label><input type="radio" name="importMode" value="replace"> Replace</label></div></article>
+          <article class="panel backup-card"><div class="backup-icon">▦</div><h3>Export CSV</h3><p>Download trade rows as CSV for a spreadsheet or manual review.</p><button class="secondary-button" id="exportCsv">Download CSV</button></article>
+          <article class="panel backup-card"><div class="backup-icon">⌕</div><h3>Recover Browser Data</h3><p>Scan this site's LocalStorage for likely older trade records. This cannot recover data that has already been deleted or belongs to a different website origin.</p><button class="secondary-button" id="scanStorage">Scan LocalStorage</button><div id="scanResults" class="scan-results"></div></article>
+          <article class="panel backup-card"><div class="backup-icon">▤</div><h3>PDF Report</h3><p>Open a print-ready report and choose “Save as PDF” in your browser's print dialog.</p><button class="secondary-button" id="exportPdf">Print / Save PDF</button></article>
+          <article class="panel backup-card warning-card"><div class="backup-icon">!</div><h3>Data safety</h3><p>Data is stored in this browser on this device. Clearing browser/site data may permanently remove it. Export backups regularly.</p><button class="secondary-button" id="showStorageKeys">Show storage keys</button><div id="storageKeys" class="scan-results"></div></article>
         </div>
-        <div class="panel safety-note"><strong>Storage reminder</strong><p>Trades are saved only in this browser on this device. Clearing site data or uninstalling the browser may remove them. Export a backup regularly.</p></div>
+        <div class="panel backup-footnote"><b>Important:</b> importing an old backup does not automatically delete existing trades unless you select Replace. Merge skips records with matching IDs where possible.</div>
       </section>
-
-      <footer>KEWA TRADE TRACKER <span>•</span> Personal journal · Not connected to a broker</footer>
     </main>
   </div>
-  <div class="toast" id="toast" role="status"></div>
-  <script src="./script.js"></script>
+
+  <dialog id="tradeDialog" class="trade-dialog">
+    <form id="tradeForm" method="dialog">
+      <div class="dialog-head"><div><h2 id="dialogTitle">Add Trade</h2><p>Enter the trade details below.</p></div><button type="button" class="close-button" id="closeDialog" aria-label="Close">×</button></div>
+      <input type="hidden" id="tradeId">
+      <div class="form-grid">
+        <label>Symbol *<input id="symbol" required maxlength="24" placeholder="e.g. BTC/USD"></label>
+        <label>Market *<select id="market" required><option>Stocks</option><option>Crypto</option><option>Forex</option></select></label>
+        <label>Side *<select id="side" required><option>Long</option><option>Short</option></select></label>
+        <label>Status *<select id="status" required><option>Closed</option><option>Open</option></select></label>
+        <label>Entry Price *<input id="entryPrice" required type="number" min="0" step="any" placeholder="0.00"></label>
+        <label>Exit Price<input id="exitPrice" type="number" min="0" step="any" placeholder="Leave blank if open"></label>
+        <label>Position Size *<input id="size" required type="number" min="0" step="any" placeholder="1"></label>
+        <label>Brokerage / Fees<input id="brokerage" type="number" min="0" step="any" value="0"></label>
+        <label>Trade Date *<input id="tradeDate" type="date" required></label>
+        <label>Strategy<input id="strategy" maxlength="80" placeholder="Breakout, swing, etc."></label>
+        <label class="full-field">Notes / Journal<textarea id="notes" rows="3" placeholder="Setup, emotions, lessons learned…"></textarea></label>
+      </div>
+      <div class="pnl-preview">Estimated net P&amp;L: <strong id="pnlPreview">₹0.00</strong><small>Long/Short price difference × size − brokerage. Check your instrument's contract multiplier separately if needed.</small></div>
+      <div class="dialog-actions"><button type="button" class="secondary-button" id="cancelTrade">Cancel</button><button type="submit" class="primary-button">Save Trade</button></div>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="script.js"></script>
 </body>
 </html>
